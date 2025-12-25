@@ -44,7 +44,6 @@ Open your terminal and run the following commands to download the code and enter
 git clone https://github.com/BigTonyTones/Tonys-Onvf-RTSP-Server.git
 cd "Tonys-Onvf-RTSP-Server"
 ```
-*(Replace `YOUR_GITHUB_REPOSITORY_URL` with your actual GitHub link)*
 
 ### 2. Prepare the Startup Script
 The project includes a startup script that automates the installation of Python dependencies and optimizes system limits for high-performance streaming. 
