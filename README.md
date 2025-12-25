@@ -2,13 +2,24 @@
 
 A robust Virtual ONVIF-RTSP Gateway designed to bridge incompatible cameras into NVRs like UniFi Protect. 
 
+### 1. Ubiquiti Protect NVR Compatibility
+The Ubiquiti Protect NVR platform has limited compatibility with many generic ONVIF cameras. This tool bridges that gap by allowing incompatible RTSP streams to be imported and presented as fully compliant virtual ONVIF cameras, ensuring seamless integration and reliable operation within the Protect ecosystem.
+
+Additionally, Ubiquiti Protect requires a **unique MAC address** for each camera. This can be achieved in several ways:
+* **Virtualized Environment**: Running the application in a virtualized environment and assigning multiple virtual network interfaces.
+* **Physical NICs**: Physically installing additional network interface cards (NICs) on the host system.
+* **Linux macvlan**: Using Linux `macvlan` networking. This program fully supports `macvlan` and has been tested on **Ubuntu 25.04** for compatibility and stable operation.
+
+### 2. Stream Rebroadcasting and Performance Optimization
+The application also enables reliable rebroadcasting of a single RTSP stream. Many physical cameras struggle to handle multiple concurrent connections, often resulting in lag or instability. This server functions as a high-performance proxy, efficiently managing multiple viewers while minimizing load on the original camera hardware.
+
 > [!IMPORTANT]
 > **Platform Optimization & Limitations:**
 > * **Ubuntu 25.04 Optimized**: This application is specifically optimized for Ubuntu 25.04.
 > * **Linux Exclusive Features**: The **Virtual NIC (Unique IP & MAC Address)** feature uses `macvlan` and is **ONLY available on Linux**.
 > * **Windows Limitation**: The Virtual NIC feature is **NOT available on Windows**. Multiple cameras will share the same host IP on Windows.
 > * **Virtualization Requirement**: If you are running this server inside a Virtual Machine (ESXi, Proxmox, VirtualBox, etc.), you **MUST enable Promiscuous Mode** on the network interface and port group for `macvlan` (Virtual NIC) to function correctly.
-* **Transcoding Alert**: Enabling live transcoding is **extremely resource-intensive** (high CPU usage) and is **not recommended** for multiple cameras unless strictly required for codec compatibility.
+> * **Transcoding Alert**: Enabling live transcoding is **extremely resource-intensive** (high CPU usage) and is **not recommended** for multiple cameras unless strictly required for codec compatibility.
 
 ## 🌟 Key Features
 - **NVR Compatibility**: Specifically optimized for UniFi Protect, providing the unique MAC addresses and Serial Numbers required for seamless integration.
