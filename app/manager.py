@@ -124,12 +124,16 @@ class CameraManager:
         # Handle auto-boot setting (Linux only)
         new_auto_boot = settings.get('autoBoot', False)
         if new_auto_boot != self.auto_boot:
-            self.auto_boot = new_auto_boot
             if self.service_mgr.is_linux():
-                if self.auto_boot:
-                    self.service_mgr.install_service()
+                if new_auto_boot:
+                    success, msg = self.service_mgr.install_service()
+                    if not success:
+                        raise Exception(f"Failed to enable auto-boot: {msg}")
                 else:
-                    self.service_mgr.uninstall_service()
+                    success, msg = self.service_mgr.uninstall_service()
+                    if not success:
+                        raise Exception(f"Failed to disable auto-boot: {msg}")
+            self.auto_boot = new_auto_boot
         
         self.save_config()
         return {

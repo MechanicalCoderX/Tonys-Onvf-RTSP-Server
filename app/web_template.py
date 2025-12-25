@@ -2312,11 +2312,12 @@ def get_web_ui_html(current_settings=None):
                     closeSettingsModal();
                     await loadData(); // Reload everything
                 }} else {{
-                    alert('Error saving settings');
+                    const error = await response.json();
+                    alert('Error saving settings: ' + (error.error || 'Unknown error'));
                 }}
             }} catch (error) {{
                 console.error('Error saving settings:', error);
-                alert('Error saving settings');
+                alert('Error saving settings: ' + error.message);
             }}
         }}
         
