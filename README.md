@@ -8,12 +8,13 @@ A robust Virtual ONVIF-RTSP Gateway designed to bridge incompatible cameras into
 > * **Linux Exclusive Features**: The **Virtual NIC (Unique IP & MAC Address)** feature uses `macvlan` and is **ONLY available on Linux**.
 > * **Windows Limitation**: The Virtual NIC feature is **NOT available on Windows**. Multiple cameras will share the same host IP on Windows.
 > * **Virtualization Requirement**: If you are running this server inside a Virtual Machine (ESXi, Proxmox, VirtualBox, etc.), you **MUST enable Promiscuous Mode** on the network interface and port group for `macvlan` (Virtual NIC) to function correctly.
+* **Transcoding Alert**: Enabling live transcoding is **extremely resource-intensive** (high CPU usage) and is **not recommended** for multiple cameras unless strictly required for codec compatibility.
 
 ## 🌟 Key Features
 - **NVR Compatibility**: Specifically optimized for UniFi Protect, providing the unique MAC addresses and Serial Numbers required for seamless integration.
 - **Unique Virtual NICs**: Full support for Linux MACVLAN to assign unique hardware identities to each virtual camera.
 - **High Performance**: Built on MediaMTX for stable, low-latency HLS and RTSP streaming.
-- **Live Transcoding**: Built-in FFmpeg integration to resize or re-encode streams on the fly.
+- **Live Transcoding**: Built-in FFmpeg integration to resize or re-encode streams on the fly. *(Note: Transcoding is very resource-intensive and not recommended unless necessary for compatibility).*
 - **Premium Web UI**: Modern, responsive dashboard with multiple themes and a real-time "Matrix View" for monitoring all cameras.
 - **Resource Management**: Optimized for high-concurrency with automated file descriptor management to prevent "Too many open files" errors.
 
